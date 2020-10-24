@@ -7,49 +7,47 @@
     tools:context=".MainActivity">
 
 
- <Button
-        android:id="@+id/captureBtn"
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="568dp"
-        android:layout_marginBottom="115dp"
+        android:layout_marginBottom="112dp"
+
+
         android:onClick="dispatchTakePictureIntent"
         android:text="CAPTURE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:paddingStart="50dp"
+        android:paddingTop="50dp"
+        android:paddingEnd="50dp"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="112dp"
+        android:onClick="dispatchTakePictureIntentAndSave"
+        android:text="SAVE"
 
 
-  <ImageView
-      android:id="@+id/imageView"
-      android:layout_width="250dp"
-      android:layout_height="250dp"
-      android:layout_marginStart="80dp"
-      android:layout_marginTop="173dp"
-      android:layout_marginEnd="81dp"
-      android:layout_marginBottom="308dp"
-      app:layout_constraintBottom_toTopOf="@+id/saveBtn"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent" />
 
-  <Button
-      android:id="@+id/saveBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:onClick="dispatchTakePictureIntentAndSave"
-      android:text="SAVE"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.684"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.831" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

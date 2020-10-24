@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String mCurrentPhotoPath;
     static final int REQUEST_TAKE_PHOTO = 2;
-    ImageView mImageView;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
     private static final int STORAGE_PERMISSION_CODE = 101;
@@ -39,39 +37,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-         mImageView = findViewById(R.id.imageView);
+        ImageView mImageView = findViewById(R.id.imageView);
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
-        }if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
-            System.out.println("Completed and Saved");
-            galleryAddPic();
+
         }
     }
 
+    public void dispatchTakePictureIntent(View view){
+        checkPermission(Manifest.permission.CAMERA,
+                CAMERA_PERMISSION_CODE);
 
- public void dispatchTakePictureIntent(View view){
         Intent takePictureIntent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(takePictureIntent.resolveActivity(getPackageManager()) != null){
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
-
-
     public void dispatchTakePictureIntentAndSave(View view){
 
         checkPermission(Manifest.permission.CAMERA,
                 CAMERA_PERMISSION_CODE);
+
+        checkPermission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                STORAGE_PERMISSION_CODE);
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(takePictureIntent.resolveActivity(getPackageManager())!=null){
@@ -86,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 Uri photoURI = FileProvider.getUriForFile(this, "com.example.cameraintent", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                galleryAddPic();
             }
         }
     }
@@ -111,13 +110,14 @@ public class MainActivity extends AppCompatActivity {
         this.sendBroadcast(mediaScanIntent);
     }
 
-    // Function to check and request permission.
+
+
     public void checkPermission(String permission, int requestCode)
     {
         if (ContextCompat.checkSelfPermission(MainActivity.this, permission)
                 == PackageManager.PERMISSION_DENIED) {
 
-            // Requesting the permission
+
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[] { permission },
                     requestCode);
@@ -168,5 +168,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    
 
 }
