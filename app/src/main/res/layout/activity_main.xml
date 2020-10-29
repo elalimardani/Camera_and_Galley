@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="112dp"
-        android:onClick="dispatchTakePictureIntentAndSave"
+        android:onClick="fileSharingIntent"
         android:text="SAVE"
 
 
@@ -47,7 +47,19 @@
         app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="571dp"
+        android:layout_marginBottom="112dp"
+        android:onClick="fileSharingIntent"
+        android:text="File Share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

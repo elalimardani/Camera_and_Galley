@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private File createImageFile() throws IOException{
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -110,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
         this.sendBroadcast(mediaScanIntent);
     }
 
+
+
+    public void fileSharingIntent(View view){
+        Intent intent = new Intent(this, FileShareActivity.class);
+        startActivity(intent);
+    }
 
 
     public void checkPermission(String permission, int requestCode)
